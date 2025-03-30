@@ -1,35 +1,29 @@
-/bootstrap/compiled.php
-/vendor
+# Created by https://www.toptal.com/developers/gitignore/api/laravel
+# Edit at https://www.toptal.com/developers/gitignore?templates=laravel
 
+### Laravel ###
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
 
-/build/logs
-/build/coverage
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
 
-storage/framework/cache/*
-storage/framework/sessions/*
-storage/framework/views/*
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
 
-/app/tests/_log
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
 
+storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
 .phpunit.result.cache
 
-composer.phar
-
-
-.DS_Store
-
-
-/.idea
-/_ide_helper.php
-
-
-/app/config/packages
-/public/packages
-
-
-/node_modules
-
-
-.env
-
-
+# End of https://www.toptal.com/developers/gitignore/api/laravel
