@@ -22,7 +22,7 @@ class LogUserActivity
 
         //Log the activity if the user is authenticated
         if(Auth::check()){
-            UserLog::created([
+            UserLog::create([
                 'user_id' => Auth::id(),
                 'route' => $request->route()->getName(),
                 'url' => $request->fullUrl(),
