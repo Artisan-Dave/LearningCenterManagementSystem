@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->renameColumn('id','student_id');
-            $table->integer('student_id')->nullable()->change();
+            // $table->renameColumn('id','payment_id');
+            $table->integer('student_id')->nullable();
             $table->timestamps();
             $table->string('full_name');
-            $table->decimal('amount', 10, 2)->default(0)->change();
+            $table->decimal('amount', 10, 2)->default(0);
             $table->decimal('total_balance', 10, 2)->default(0);
+            $table->softDeletes();
         });
     }
 
