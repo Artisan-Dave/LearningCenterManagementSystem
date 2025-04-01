@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->renameColumn('id','student_id');
+            $table->integer('student_id')->nullable()->change();
             $table->string('full_name');
             $table->timestamps();
+            $table->softDeletes();
+            $table->decimal('total_balance', 10, 2)->default(0)->change();
         });
     }
 
