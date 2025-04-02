@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\LogUserActivity;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -15,6 +16,11 @@ return Application::configure(basePath: dirname(__DIR__))
         //Register LogUser Middleware Globally
         $middleware->append([
             LogUserActivity::class,
+        ]);
+
+        // Register route middleware
+        $middleware->alias([
+            'admin' => AdminMiddleware::class,
         ]);
         
     })

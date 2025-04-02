@@ -16,6 +16,7 @@ use App\Http\Controllers\Student\SearchStudentController;
 use App\Http\Controllers\Student\ShowAllStudentsController;
 use App\Http\Controllers\Student\UpdateBalanceController;
 use App\Http\Controllers\Student\UpdateStudentController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,10 +27,16 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-    
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    Route::middleware('admin')->group(function () {
+        Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+        Route::post('register', [RegisteredUserController::class, 'store']);
+    });
+
     Route::get('student/add', AddStudentController::class)->name('student.add');
     Route::post('student/', SaveStudentController::class)->name('student.save');
     Route::get('/student/main', ShowAllStudentsController::class)->name('student.main');
