@@ -31,12 +31,6 @@
                         <div>
                             <h1 class="text-xl text-semibold">Total of Transactions ({{ $total }})</h1>
                         </div>
-                        {{-- <div>
-                            <a href="{{ route('payment.create.payment') }}"
-                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
-                                Add Student
-                            </a>
-                        </div> --}}
                     </div>
 
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -45,12 +39,12 @@
                                 <table class="min-w-full divide-y divide-gray-200 table-auto dark:divide-gray-700">
                                     <thead class="bg-gray-100 dark:bg-gray-500">
                                         <tr>
-                                            <th scope="col"
+                                            {{-- <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-left">PAYMENT ID
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-left">STUDENT ID
-                                            </th>
+                                            </th> --}}
                                             <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">FULL
                                                 NAME</th>
                                             <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">AMOUNT
@@ -71,14 +65,14 @@
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-300 dark:divide-gray-700">
                                         @forelse ($payments as $payment)
                                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-100">
-                                                <td
+                                                {{-- <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                     {{ $payment->payment_id }}
                                                 </td>
                                                 <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                     {{ $payment->student_id }}
-                                                </td>
+                                                </td> --}}
                                                 <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                     {{ $payment->full_name }}
@@ -100,13 +94,11 @@
                                                         {{-- To do: View PDF button --}}
                                                     <a href="{{ route('invoice.view' ,['payment_id' => $payment->payment_id])}}"
                                                         class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md"
-                                                        target="_blank" rel="noopener noreferrer">View
-                                                        PDF</a>
+                                                        target="_blank" rel="noopener noreferrer">View</a>
 
                                                     {{-- To do: Print PDF button --}}
                                                     <a href="{{ route('invoice.download',['payment_id' => $payment->payment_id]) }}"
-                                                        class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Download
-                                                        PDF</a>
+                                                        class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Download</a>
 
                             </div> <!-- x-data -->
                             </td>

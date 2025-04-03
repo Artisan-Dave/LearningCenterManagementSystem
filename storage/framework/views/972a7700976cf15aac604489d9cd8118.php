@@ -43,7 +43,6 @@
                         <div>
                             <h1 class="text-xl text-semibold">Total of Transactions (<?php echo e($total); ?>)</h1>
                         </div>
-                        
                     </div>
 
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -52,12 +51,7 @@
                                 <table class="min-w-full divide-y divide-gray-200 table-auto dark:divide-gray-700">
                                     <thead class="bg-gray-100 dark:bg-gray-500">
                                         <tr>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left">PAYMENT ID
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left">STUDENT ID
-                                            </th>
+                                            
                                             <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">FULL
                                                 NAME</th>
                                             <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">AMOUNT
@@ -78,16 +72,7 @@
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-300 dark:divide-gray-700">
                                         <?php $__empty_1 = true; $__currentLoopData = $payments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $payment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-100">
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                    <?php echo e($payment->payment_id); ?>
-
-                                                </td>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                    <?php echo e($payment->student_id); ?>
-
-                                                </td>
+                                                
                                                 <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                     <?php echo e($payment->full_name); ?>
@@ -112,13 +97,11 @@
                                                     
                                                     <a href="<?php echo e(route('invoice.view' ,['payment_id' => $payment->payment_id])); ?>"
                                                         class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md"
-                                                        target="_blank" rel="noopener noreferrer">View
-                                                        PDF</a>
+                                                        target="_blank" rel="noopener noreferrer">View</a>
 
                                                     
                                                     <a href="<?php echo e(route('invoice.download',['payment_id' => $payment->payment_id])); ?>"
-                                                        class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Download
-                                                        PDF</a>
+                                                        class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Download</a>
 
                             </div> <!-- x-data -->
                             </td>
