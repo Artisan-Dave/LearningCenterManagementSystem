@@ -20,7 +20,7 @@
 <body>
     <div class="invoice-container">
         <div class="invoice-header">
-            <img src="" alt="BridgeHope Logo">
+            <img src="<?php echo e(asset('logo.png')); ?>" alt="Logo">
             <h1>BridgeHope Invoice #<?php echo e($invoice->id); ?></h1>
             <p>Date: <?php echo e(now()->format('m-d-Y')); ?></p>
         </div>
@@ -38,8 +38,8 @@
                 <?php $__currentLoopData = $invoice->items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td><?php echo e($item['full_name']); ?></td>
-                        <td>₱ <?php echo e(number_format($item['amount'], 2)); ?></td>
-                        <td>₱ <?php echo e(number_format($item['total_balance'], 2)); ?></td>
+                        <td><?php echo e(number_format($item['amount'], 2)); ?></td>
+                        <td><?php echo e(number_format($item['total_balance'], 2)); ?></td>
                         <td><?php echo e($item['date_of_payment']); ?></td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

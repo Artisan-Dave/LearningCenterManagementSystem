@@ -20,7 +20,7 @@
 <body>
     <div class="invoice-container">
         <div class="invoice-header">
-            <img src="" alt="BridgeHope Logo">
+            <img src="{{ asset('logo.png') }}" alt="Logo">
             <h1>BridgeHope Invoice #{{ $invoice->id }}</h1>
             <p>Date: {{ now()->format('m-d-Y') }}</p>
         </div>
@@ -38,8 +38,8 @@
                 @foreach($invoice->items as $item)
                     <tr>
                         <td>{{ $item['full_name'] }}</td>
-                        <td>₱ {{ number_format($item['amount'], 2) }}</td>
-                        <td>₱ {{ number_format($item['total_balance'], 2) }}</td>
+                        <td>{{ number_format($item['amount'], 2) }}</td>
+                        <td>{{ number_format($item['total_balance'], 2) }}</td>
                         <td>{{ $item['date_of_payment'] }}</td>
                     </tr>
                 @endforeach
