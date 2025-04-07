@@ -2,6 +2,7 @@
 use App\Http\Controllers\Invoice\DownloadInvoiceController;
 use App\Http\Controllers\Invoice\ViewInvoiceController;
 use App\Http\Controllers\Invoices\ShowInvoiceController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\Payment\CreatePaymentController;
 use App\Http\Controllers\Payment\SavePaymentController;
 use App\Http\Controllers\Payment\SearchPaymentController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,6 +33,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    //Mailtrap Testing Route
+    // Route::get('send-email',[MailController::class,'sendEmail']);
 
     Route::middleware('admin')->group(function () {
         Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
