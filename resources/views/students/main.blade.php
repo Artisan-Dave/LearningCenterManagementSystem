@@ -87,10 +87,8 @@
                                                         <a href="{{ route('payment.create', ['student_id' => urlencode(Crypt::encrypt($student->student_id))]) }}"
                                                             class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Payment</a>
                                                         
-                                                        {{-- TODO: fix delete controller --}}
-                                                        
                                                         {{-- Confirmation Modal --}}
-                                                        <div x-show="open" x-cloak
+                                                        <div  x-cloak x-show="open"
                                                             class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
                                                             <div class="bg-white p-6 rounded-lg md-w-3/4">
                                                                 <h3 class="text-lg font-semibold mb-4">Are you sure you

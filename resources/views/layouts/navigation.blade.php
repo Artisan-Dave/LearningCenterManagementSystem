@@ -52,11 +52,11 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
+                    @if (auth()->user()->usertype !== 'user')
                         <x-dropdown-link :href="route('register')">
                             {{ __('Create Account') }}
                         </x-dropdown-link>
-
+                    @endif
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
