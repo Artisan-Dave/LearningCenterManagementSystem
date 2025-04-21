@@ -171,9 +171,7 @@
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
                         {{-- Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) --}}
-                        Contact the Developer<br>
-                        Mobile: +63-926-574-5271<br>
-                        Email: davealmadin3196@gmail.com<br>
+                        Powered by: JDV Developer<br>
                         Copyright 2025 All rights reserved
                     </footer>
                 </div>
