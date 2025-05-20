@@ -19,16 +19,12 @@
             </style>
         <?php endif; ?>
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-            
+    <body class="font-sans antialiased bg-black dark:text-white/50 overflow-hidden">
+        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 w-full h-full bg-no-repeat bg-cover bg-right" style="background-image:url('https://cdn.pixabay.com/photo/2022/07/31/06/09/day-care-center-7355023_1280.jpg');">
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                        <div class="flex lg:justify-center lg:col-start-2">
-                            
-                        </div>
-                        <div class="flex lg:justify-center lg:col-start-2">
+                        <div class="flex lg:justify-center lg:col-start-2 bg-black">
                             <?php if(Route::has('login')): ?>
                             <nav class="-mx-3 flex flex-1 justify-center">
                                 <?php if(auth()->guard()->check()): ?>
@@ -54,10 +50,8 @@
                        
                     </header>
 
-                    
-
-                    <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        
+                    <footer class="py-16 text-center text-sm text-black dark:text-white/70 w-full bg-black">
+                        Laravel v<?php echo e(Illuminate\Foundation\Application::VERSION); ?> (PHP v<?php echo e(PHP_VERSION); ?>)<br>
                         Powered by: JDV Developer<br>
                         Copyright 2025 All rights reserved
                     </footer>
