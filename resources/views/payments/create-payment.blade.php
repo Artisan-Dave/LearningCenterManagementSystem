@@ -14,7 +14,7 @@
                             <form method="post" action="">
                                 @csrf
                                 @if (session()->has('error'))
-                                    <div class="bg-red-500 text-black px-4 py-2">
+                                    <div class="font-medium text-sm text-red-600">
                                         {{ session('error') }}
                                     </div>
                                 @endif
@@ -25,7 +25,7 @@
                                     <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
                                 </div>
 
-                                <div>
+                                <div class="flex items-center py-4">
                                     <x-input-label for="total_balance" :value="__('Total Balance: ')"/>
                                     <x-input-label id="total_balance" :value="$students->total_balance"/>
                                     {{-- <x-text-input id="total_balance" class="block mt-1 w-full" type="number"

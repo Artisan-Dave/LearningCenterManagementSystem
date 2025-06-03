@@ -19,7 +19,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <?php if(session()->has('success')): ?>
-                    <div class="bg-green-500 text-black px-4 py-2">
+                    <div class="font-medium text-sm text-green-600 p-4">
                         <?php echo e(session('success')); ?>
 
                     </div>
@@ -33,7 +33,7 @@
                                 class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Search</button>
                         </form>
                         <?php if(isset($message)): ?>
-                            <div style="color: red; font-weight: bold;">
+                            <div style="font-medium text-sm text-red-600">
                                 <?php echo e($message); ?>
 
                             </div>
