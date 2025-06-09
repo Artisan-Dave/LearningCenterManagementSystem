@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Invoice\DownloadInvoiceController;
 use App\Http\Controllers\Invoice\ViewInvoiceController;
 use App\Http\Controllers\Invoices\ShowInvoiceController;
@@ -40,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
+        Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+        Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
     });
 
     Route::get('student/add', AddStudentController::class)->name('student.add');
