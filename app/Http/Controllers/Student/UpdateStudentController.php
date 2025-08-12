@@ -13,7 +13,6 @@ class UpdateStudentController extends Controller
      */
     public function __invoke(Request $request, $student_id)
     {
-        $decryptedID = Crypt::decrypt($student_id);
     
         $data = $request->validate([
             'full_name' => ['required','string','regex:/^[a-zA-Z\s]+$/']
@@ -35,7 +34,7 @@ class UpdateStudentController extends Controller
             return redirect()->back()->withInput();
         }
 
-        $students = Student::findOrFail($decryptedID);
+        $students = Student::findOrFail($student_id);
         $full_name = $request->full_name;
         
         $students->full_name = $full_name;

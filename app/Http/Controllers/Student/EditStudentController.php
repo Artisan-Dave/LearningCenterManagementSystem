@@ -13,8 +13,7 @@ class EditStudentController extends Controller
      */
     public function __invoke(Request $request,$student_id)
     {
-        $decryptedId = Crypt::decrypt($student_id);
-        $students = Student::findOrFail($decryptedId);
+        $students = Student::findOrFail($student_id);
         return view('students.edit',['students'=>$students]);
     }
 }

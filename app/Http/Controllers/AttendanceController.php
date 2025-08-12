@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\admin\BaseAdminController;
 use App\Models\User;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 
-class AttendanceController extends Controller
+class AttendanceController extends BaseAdminController
 {
     public function index(){
+        $users = User::where('usertype','user')->get();
+        return view('attendance.index',compact('users'));
 
     }
 

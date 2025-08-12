@@ -22,6 +22,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Laravel\SerializableClosure\Serializers\Signed;
 
 
 Route::get('/', function () {
@@ -41,19 +42,21 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
+        
         Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
         Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+
+        Route::get('/student/create-balance/{student_id}', CreateBalanceController::class)->name('student.create-balance')->middleware('signed');
+        Route::post('student/create-balance/{student_id}', UpdateBalanceController::class)->name('student.update-balance');
     });
 
     Route::get('student/add', AddStudentController::class)->name('student.add');
     Route::post('student/', SaveStudentController::class)->name('student.save');
     Route::get('/student/main', ShowAllStudentsController::class)->name('student.main');
-    Route::get('/student/edit/{student_id}', EditStudentController::class)->name('student.edit');
+    Route::get('/student/edit/{student_id}', EditStudentController::class)->name('student.edit')->middleware('signed');
     Route::post('/student/edit/{student_id}', UpdateStudentController::class);
     Route::delete('/student/delete/{student_id}', DeleteStudentController::class)->name('student.delete');
     Route::get('/student/search', SearchStudentController::class)->name('student.search');
-    Route::get('/student/create-balance/{student_id}', CreateBalanceController::class)->name('student.create-balance');
-    Route::post('student/create-balance/{student_id}', UpdateBalanceController::class)->name('student.update-balance');
 
 
     Route::get('/payment/main', ShowAllPaymentsController::class)->name('payment.main');

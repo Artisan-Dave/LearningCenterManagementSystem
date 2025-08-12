@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Invoice #{{ $invoice->id }}</title>
+    <title>Invoice #<?php echo e($invoice->id); ?></title>
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
         .invoice-container { max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
@@ -20,9 +20,9 @@
 <body>
     <div class="invoice-container">
         <div class="invoice-header">
-            {{-- <img src="{{ asset('logo.png') }}" alt="Logo"> --}}
-            <h1>BridgeHope Invoice #{{ $invoice->id }}</h1>
-            <p>Date: {{ now()->format('m-d-Y') }}</p>
+            
+            <h1>BridgeHope Invoice #<?php echo e($invoice->id); ?></h1>
+            <p>Date: <?php echo e(now()->format('m-d-Y')); ?></p>
         </div>
 
         <table class="invoice-table">
@@ -35,14 +35,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($invoice->items as $item)
+                <?php $__currentLoopData = $invoice->items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $item['full_name'] }}</td>
-                        <td>{{ number_format($item['amount'], 2) }}</td>
-                        <td>{{ number_format($item['total_balance'], 2) }}</td>
-                        <td>{{ $item['date_of_payment'] }}</td>
+                        <td><?php echo e($item['full_name']); ?></td>
+                        <td><?php echo e(number_format($item['amount'], 2)); ?></td>
+                        <td><?php echo e(number_format($item['total_balance'], 2)); ?></td>
+                        <td><?php echo e($item['date_of_payment']); ?></td>
                     </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
 
@@ -51,4 +51,4 @@
         </div>
     </div>
 </body>
-</html>
+</html><?php /**PATH D:\xampp\htdocs\payment-system\resources\views/invoices/invoice.blade.php ENDPATH**/ ?>

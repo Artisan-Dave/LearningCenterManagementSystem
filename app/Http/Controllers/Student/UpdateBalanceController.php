@@ -14,10 +14,9 @@ class UpdateBalanceController extends Controller
      * Handle the incoming request.
      */
 
-    //TODO: Fix this controller update won't work
+
     public function __invoke(Request $request, $student_id)
     {
-        $decryptedId = Crypt::decrypt($student_id);
 
         $data = $request->validate([
             'full_name' => ['string', 'regex:/^[a-zA-Z\s]+$/'],
@@ -25,7 +24,7 @@ class UpdateBalanceController extends Controller
         ]);
         
 
-        $students = Student::findOrFail($decryptedId);
+        $students = Student::findOrFail($student_id);
         $total_balance = $request->total_balance;
 
         $students->total_balance = $total_balance;

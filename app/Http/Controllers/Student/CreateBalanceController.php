@@ -15,10 +15,8 @@ class CreateBalanceController extends Controller
      */
     public function __invoke(Request $request,$student_id)
     {
-        // dd($request);
-            $decryptedId = Crypt::decrypt($student_id);
       
-            $students = Student::findOrFail($decryptedId);
+            $students = Student::findOrFail($student_id);
             return view('students.create-balance',['students' => $students]);
         
     }
