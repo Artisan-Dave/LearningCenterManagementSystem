@@ -14,11 +14,6 @@
                             <form method="POST" action="{{ route('student.save') }}">
                                 @csrf
                                 @method('post')
-                                @if (session()->has('error'))
-                                    <div class="font-medium text-sm text-red-600 p-auto">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
                                 <div>
                                     <x-input-label for="full_name" :value="__('Full Name')" />
                                     <x-text-input id="full_name" class="block mt-1 w-full" type="text"

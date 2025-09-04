@@ -23,12 +23,6 @@
                         <div class="p-6 text-gray-900">
                             <form method="post" action="">
                                 <?php echo csrf_field(); ?>
-                                <?php if(session()->has('error')): ?>
-                                    <div class="font-medium text-sm text-red-600 p-auto">
-                                        <?php echo e(session('error')); ?>
-
-                                    </div>
-                                <?php endif; ?>
                                 <div>
                                     <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $attributes; } ?>

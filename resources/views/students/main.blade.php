@@ -8,22 +8,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                @if (session()->has('success'))
-                    <div class="font-medium text-sm text-green-600 p-4">
-                        {{ session('success') }}
-                    </div>
-                @endif
                 <div class="p-5 text-gray-900">
                     <div class="flex justify-end my-2 sm:-flex flex-wrap">
                         <form method="GET" action="{{ route('student.search') }}" class="input-group">
                             <input type="text" name="search" placeholder="Search..." value="{{ request()->query('search') }}" class="form-control rounded-md shadow-sm">
                             <button type="submit" class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Search</button>
                         </form>
-                        @if (isset($message))
-                            <div class="font-medium text-sm text-red-600 p-auto">
-                                {{ $message }}
-                            </div>
-                        @endif
                     </div>
                     <div class="flex justify-between bg-gray-200 p-5 rounded-md sm:-flex flex-wrap">
                         <div>

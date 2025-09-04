@@ -24,12 +24,6 @@
                             <form method="POST" action="<?php echo e(route('student.save')); ?>">
                                 <?php echo csrf_field(); ?>
                                 <?php echo method_field('post'); ?>
-                                <?php if(session()->has('error')): ?>
-                                    <div class="font-medium text-sm text-red-600 p-auto">
-                                        <?php echo e(session('error')); ?>
-
-                                    </div>
-                                <?php endif; ?>
                                 <div>
                                     <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $attributes; } ?>
