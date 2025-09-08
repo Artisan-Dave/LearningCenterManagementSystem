@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# BridgeHopePaymentSystem
+# LearningCenterManagementSystem
 A simple payment tracking system with basic enrollment feature for a small learning center
 The bridgehope learning and development center aims to teach kids with special needs, the
 system includes individual tuition fee per pupils as the payments depends according to number
