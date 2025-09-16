@@ -16,7 +16,7 @@
                                 <div>
                                     <x-input-label for="full_name" :value="__('Full Name')" />
                                     <x-text-input id="full_name" class="block mt-1 w-full" type="text"
-                                        name="full_name" :value="$students->full_name" />
+                                        name="full_name" :value="$student->full_name" />
                                     <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
                                 </div>
 

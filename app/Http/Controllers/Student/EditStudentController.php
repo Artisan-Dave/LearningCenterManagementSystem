@@ -13,7 +13,7 @@ class EditStudentController extends Controller
      */
     public function __invoke(Request $request,$student_id)
     {
-        $students = Student::findOrFail($student_id);
-        return view('students.edit',['students'=>$students]);
+        $student = Student::findOrFail($student_id);
+        return view('students.edit','students'->$student);
     }
 }
