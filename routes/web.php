@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
         Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
 
-        Route::get('/student/create-balance/{student_id}', CreateBalanceController::class)->name('student.create-balance')->middleware('signed');
+        Route::get('/student/create-balance/{student_id}', CreateBalanceController::class)->name('student.create-balance');
         Route::post('student/create-balance/{student_id}', UpdateBalanceController::class)->name('student.update-balance');
     });
 
