@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('student/add', AddStudentController::class)->name('student.add');
     Route::post('student/', SaveStudentController::class)->name('student.save');
     Route::get('/student/main', ShowAllStudentsController::class)->name('student.main');
-    Route::get('/student/edit/{student_id}', EditStudentController::class)->name('student.edit')->middleware('signed');
+    Route::get('/student/edit/{student_id}', EditStudentController::class)->name('student.edit');
     Route::post('/student/edit/{student_id}', UpdateStudentController::class);
     Route::delete('/student/delete/{student_id}', DeleteStudentController::class)->name('student.delete');
     Route::get('/student/search', SearchStudentController::class)->name('student.search');

@@ -65,7 +65,7 @@
                                                 </td>
                                                 <td class="lg:-p-2 sm:-flex flex-wrap">
                                                     <div x-data="{ open: false, studentId: null, studentFullname: '' }">
-                                                        <a href="{{ URL::signedRoute('student.edit', ['student_id' => $student->student_id]) }}"
+                                                        <a href="{{ route('student.edit', ['student_id' => $student->student_id]) }}"
                                                             class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Edit</a>
 
                                                         {{-- Trigger delete modal --}}
