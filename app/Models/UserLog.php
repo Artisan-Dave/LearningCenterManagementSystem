@@ -24,5 +24,16 @@ class UserLog extends Model
     public function user(){
         return $this -> belongsTo(User::class);
     }
+
+      // Automatically truncate URL before saving
+    public static function booted()
+    {
+        static::creating(function ($log) {
+            // Limit to 500 characters (adjust as needed)
+            if (strlen($log->url) > 500) {
+                $log->url = substr($log->url, 0, 500);
+            }
+        });
+    }
     
 }
