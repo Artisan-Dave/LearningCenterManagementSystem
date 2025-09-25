@@ -1,3 +1,4 @@
+
 <?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
 <?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -8,6 +9,7 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+    <?php $__env->startSection('title',' | Students'); ?>
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <?php echo e(__('Student')); ?>
@@ -34,12 +36,8 @@
                                 class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
                                 Add Student
                             </a>
-                        </div><div>
-                            <a href="<?php echo e(route('attendance.index')); ?>"
-                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
-                                Attendance
-                            </a>
                         </div>
+                        
                     </div>
                     
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -58,6 +56,8 @@
                                     <tbody
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-300 dark:divide-gray-700">
                                         <?php $__empty_1 = true; $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <?php echo e($students->appends(['search' => request()->search])->links()); ?>
+
                                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-100">
                                                 
                                                 <td
@@ -70,9 +70,9 @@
                                                     <?php echo e(number_format($student->total_balance)); ?>
 
                                                 </td>
-                                                <td class="lg:-p-2 sm:-flex flex-wrap">
+                                                <td class="lg:p-2 sm:flex flex-wrap">
                                                     <div x-data="{ open: false, studentId: null, studentFullname: '' }">
-                                                        <a href="<?php echo e(URL::signedRoute('student.edit', ['student_id' => $student->student_id])); ?>"
+                                                        <a href="<?php echo e(route('student.edit', $student->student_id)); ?>"
                                                             class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Edit</a>
 
                                                         
@@ -82,7 +82,7 @@
                                                             Delete
                                                         </button>
 
-                                                        <a href="<?php echo e(URL::signedRoute('student.create-balance', ['student_id' => $student->student_id])); ?>"
+                                                        <a href="<?php echo e(route('student.create-balance', ['student_id' => $student->student_id])); ?>"
                                                             class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Total Balance</a>
 
                                                         <a href="<?php echo e(route('payment.create', ['student_id' => urlencode(Crypt::encrypt($student->student_id))])); ?>"
@@ -115,13 +115,11 @@
                                                     </div> <!-- x-data -->
                                                 </td> <!-- Buttons for Action -->
                                             </tr> <!-- Header -->
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                            <div>
-                                                    <h2 class="flex justify-center bg-gray-200">No record found</h2>
-                                            </div>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                <div>
+                                                        <h2 class="flex justify-center bg-gray-200">No record found</h2>
+                                                </div>
                                         <?php endif; ?> <!-- For Else -->
-                                        <?php echo e($students->appends(['search' => request()->search])->links()); ?>
-
                                     </tbody> <!--Table Class -->
                             </div> <!-- Overflow Hidden -->
                         </div> <!-- py-12 -->

@@ -1,4 +1,6 @@
+
 <x-app-layout>
+    @section('title',' | Students')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Student') }}
@@ -24,12 +26,13 @@
                                 class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
                                 Add Student
                             </a>
-                        </div><div>
+                        </div>
+                        {{-- <div>
                             <a href="{{ route('attendance.index') }}"
                                 class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
                                 Attendance
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                     
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -50,6 +53,7 @@
                                     <tbody
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-300 dark:divide-gray-700">
                                         @forelse ($students as $student)
+                                        {{$students->appends(['search' => request()->search])->links()}}
                                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-100">
                                                 {{-- <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -63,9 +67,9 @@
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                     {{ number_format($student->total_balance) }}
                                                 </td>
-                                                <td class="lg:-p-2 sm:-flex flex-wrap">
+                                                <td class="lg:p-2 sm:flex flex-wrap">
                                                     <div x-data="{ open: false, studentId: null, studentFullname: '' }">
-                                                        <a href="{{ route('student.edit', ['student_id' => $student->student_id]) }}"
+                                                        <a href="{{ route('student.edit', $student->student_id) }}"
                                                             class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Edit</a>
 
                                                         {{-- Trigger delete modal --}}
@@ -109,12 +113,11 @@
                                                     </div> <!-- x-data -->
                                                 </td> <!-- Buttons for Action -->
                                             </tr> <!-- Header -->
-                                        @empty
-                                            <div>
-                                                    <h2 class="flex justify-center bg-gray-200">No record found</h2>
-                                            </div>
+                                            @empty
+                                                <div>
+                                                        <h2 class="flex justify-center bg-gray-200">No record found</h2>
+                                                </div>
                                         @endforelse <!-- For Else -->
-                                        {{$students->appends(['search' => request()->search])->links()}}
                                     </tbody> <!--Table Class -->
                             </div> <!-- Overflow Hidden -->
                         </div> <!-- py-12 -->

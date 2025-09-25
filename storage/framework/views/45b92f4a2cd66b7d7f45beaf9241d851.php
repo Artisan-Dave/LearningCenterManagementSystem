@@ -906,19 +906,35 @@
     <?php endif; ?>
 </head>
 
-<body class="font-sans antialiased bg-gray-100 h-screen overflow-x-hidden">
-    
-    <div class="grid grid-cols-3 gap-4 p-10">
-        <div class="col-span-3 rounded-lg md:col-span-1 bg-gray-500 h-50">
-            <div class="flex items-center justify-center">
-                <p class="">Left Column</p>
+<body class="font-sans antialiased bg-gray-100 h-screen w-full">
+    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 w-full h-full bg-no-repeat bg-cover bg-center">
+        <div
+            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
+            <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+                <header class="grid items-center gap-2 py-10 lg:grid-cols-3">
+                    <div class="flex lg:justify-center lg:col-start-2">
+                        <?php if(Route::has('login')): ?>
+                            <nav class="-mx-3 flex flex-1 justify-center gap-2">
+                                <?php if(auth()->guard()->check()): ?>
+                                    <a href="<?php echo e(url('/dashboard')); ?>"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white bg-black/50">
+                                        Dashboard
+                                    </a>
+                                <?php else: ?>
+                                    <a href="<?php echo e(route('login')); ?>"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white bg-black/50">
+                                        Log in
+                                    </a>
+
+                                    
+                                <?php endif; ?>
+                            </nav>
+                        <?php endif; ?>
+                    </div>
+                </header>
             </div>
         </div>
-        <div class="col-span-3 rounded-lg md:col-span-2 bg-yellow-500">
-            <div class="flex items-center justify-center">
-                <p class="">Left Column</p>
-            </div>
-        </div>
+        <?php echo $__env->make('components.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
 
 </body>

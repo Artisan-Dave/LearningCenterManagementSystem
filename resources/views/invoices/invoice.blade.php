@@ -20,8 +20,7 @@
 <body>
     <div class="invoice-container">
         <div class="invoice-header">
-            {{-- <img src="{{ asset('logo.png') }}" alt="Logo"> --}}
-            <h1>BridgeHope Invoice #{{ $invoice->id }}</h1>
+            <h1>Learning Center Invoice #{{ $invoice->id }}</h1>
             <p>Date: {{ now()->format('m-d-Y') }}</p>
         </div>
 
