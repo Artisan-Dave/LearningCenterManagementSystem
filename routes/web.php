@@ -8,18 +8,14 @@ use App\Http\Controllers\Payment\CreatePaymentController;
 use App\Http\Controllers\Payment\SavePaymentController;
 use App\Http\Controllers\Payment\SearchPaymentController;
 use App\Http\Controllers\Payment\ShowAllPaymentsController;
-use App\Http\Controllers\Student\AddStudentController;
 use App\Http\Controllers\Student\CreateBalanceController;
 use App\Http\Controllers\Student\DeleteStudentController;
-use App\Http\Controllers\Student\EditStudentController;
-use App\Http\Controllers\Student\SaveBalanceController;
 use App\Http\Controllers\Student\SaveStudentController;
 use App\Http\Controllers\Student\SearchStudentController;
 use App\Http\Controllers\Student\ShowAllStudentsController;
 use App\Http\Controllers\Student\UpdateBalanceController;
-use App\Http\Controllers\Student\UpdateStudentController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Laravel\SerializableClosure\Serializers\Signed;
@@ -50,11 +46,9 @@ Route::middleware('auth')->group(function () {
         Route::post('student/create-balance/{student_id}', UpdateBalanceController::class)->name('student.update-balance');
     });
 
-    Route::get('student/add', AddStudentController::class)->name('student.add');
-    Route::post('student/', SaveStudentController::class)->name('student.save');
-    Route::get('/student/main', ShowAllStudentsController::class)->name('student.main');
-    Route::get('/student/edit/{student_id}', EditStudentController::class)->name('student.edit');
-    Route::post('/student/edit/{student_id}', UpdateStudentController::class);
+    //Student Routes
+    Route::resource('students', StudentController::class);
+
     Route::delete('/student/delete/{student_id}', DeleteStudentController::class)->name('student.delete');
     Route::get('/student/search', SearchStudentController::class)->name('student.search');
 

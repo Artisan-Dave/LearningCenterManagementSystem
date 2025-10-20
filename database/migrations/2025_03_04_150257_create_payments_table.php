@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            // $table->renameColumn('id','payment_id');
             $table->integer('student_id')->nullable();
             $table->timestamps();
             $table->string('full_name');

@@ -10,7 +10,7 @@
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <?php echo e(__('Edit Student')); ?>
+            <?php echo e(__('Add Student')); ?>
 
         </h2>
      <?php $__env->endSlot(); ?>
@@ -21,9 +21,9 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            <form method="POST" action="<?php echo e(route('students.update',$student->id)); ?>">
+                            <form method="POST" action="<?php echo e(route('students.store')); ?>">
                                 <?php echo csrf_field(); ?>
-                                <?php echo method_field('PUT'); ?>
+                                <?php echo method_field('post'); ?>
                                 <div>
                                     <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $attributes; } ?>
@@ -47,14 +47,14 @@
 <?php endif; ?>
                                     <?php if (isset($component)) { $__componentOriginal18c21970322f9e5c938bc954620c12bb = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal18c21970322f9e5c938bc954620c12bb = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'full_name','class' => 'block mt-1 w-full','type' => 'text','name' => 'full_name','value' => $student->full_name]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'full_name','class' => 'block mt-1 w-full','type' => 'text','name' => 'full_name','value' => old('full_name'),'required' => true,'autofocus' => true,'autocomplete' => 'full_name']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['id' => 'full_name','class' => 'block mt-1 w-full','type' => 'text','name' => 'full_name','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($student->full_name)]); ?>
+<?php $component->withAttributes(['id' => 'full_name','class' => 'block mt-1 w-full','type' => 'text','name' => 'full_name','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(old('full_name')),'required' => true,'autofocus' => true,'autocomplete' => 'full_name']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal18c21970322f9e5c938bc954620c12bb)): ?>
@@ -98,7 +98,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['class' => 'ms-4']); ?>
-                                        <?php echo e(__('Save')); ?>
+                                        <?php echo e(__('Add')); ?>
 
                                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -128,4 +128,4 @@
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
 <?php endif; ?>
-<?php /**PATH D:\xampp\htdocs\lcms\resources\views/students/edit.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\xampp\htdocs\lcms\resources\views/students/create.blade.php ENDPATH**/ ?>
