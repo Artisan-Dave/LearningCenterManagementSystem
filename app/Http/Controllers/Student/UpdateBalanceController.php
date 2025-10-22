@@ -33,7 +33,7 @@ class UpdateBalanceController extends Controller
 
         if ($data) {
             session()->flash('success', 'Balance Updated Successfully!');
-            return redirect(route('student.main'));
+            return redirect(route('students.index'));
         } else {
             session()->flash('error', 'Something went wrong');
             return redirect()->back()->withInput();

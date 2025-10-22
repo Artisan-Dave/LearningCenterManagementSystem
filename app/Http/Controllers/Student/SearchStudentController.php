@@ -13,24 +13,23 @@ class SearchStudentController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $search = $request->input('search');
+        $validated = $request->validate([
+            'search' => 'nullable|string|max:255',
+        ]);
+
+        // Use null coalescing to avoid "undefined index" error
+        $search = trim($validated['search'] ?? '');
+
         $total = Student::count();
-        try{
-            if($search){
-                $students = Student::where('full_name', 'LIKE', "%{$search}%")
-                // ->orWhere('middlename', 'LIKE', "%{$search}%")
-                // ->orWhere('lastname', 'LIKE', "%{$search}%")
-                ->orWhere('total_balance','LIKE',"%{$search}%")
+
+        if ($search !== '') {
+            $students = Student::where('full_name', 'LIKE', "%{$search}%")
+                ->orWhere('total_balance', 'LIKE', "%{$search}%")
                 ->paginate(10);
-            }else{
-                $students = Student::paginate(10);
-            }
+        } else {
+            $students = Student::paginate(10);
         }
-        catch(Exception $e){
-            session()->flash('error', 'Something went wrong!');
-            return redirect(route('students.main'));
-        }
-        
-        return view('students.main', compact("students","total"));
+
+        return view('students.index', compact('students', 'total'));
     }
 }

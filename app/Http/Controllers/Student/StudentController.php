@@ -67,9 +67,10 @@ class StudentController extends Controller implements HasMiddleware
             return redirect(route('students.index'));
         }
 
-        $newStudent = Student::create($data);
-        session()->flash('success', 'Student enrolled successfully!');
-        return redirect(route('students.index'));
+        $newStudent = new Student($data);
+        $newStudent->save();
+
+        return redirect(route('students.index'))->with('success','Student enrolled successfully');
     }
 
     /**
@@ -114,12 +115,8 @@ class StudentController extends Controller implements HasMiddleware
             return redirect()->back()->withInput();
         }
 
-        $students = Student::findOrFail($id);
-        $full_name = $request->full_name;
-        
-        $students->full_name = $full_name;
-       
-        $data = $students->save();
+        $student = Student::findOrFail($id);
+        $student->update($data);
 
         if ($data) {
             session()->flash('success', 'Student updated successfully!');
