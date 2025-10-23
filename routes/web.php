@@ -9,7 +9,6 @@ use App\Http\Controllers\Payment\SavePaymentController;
 use App\Http\Controllers\Payment\SearchPaymentController;
 use App\Http\Controllers\Payment\ShowAllPaymentsController;
 use App\Http\Controllers\Student\CreateBalanceController;
-use App\Http\Controllers\Student\DeleteStudentController;
 use App\Http\Controllers\Student\SearchStudentController;
 use App\Http\Controllers\Student\UpdateBalanceController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -46,8 +45,6 @@ Route::middleware('auth')->group(function () {
 
     //Student Routes
     Route::resource('students', StudentController::class);
-
-    Route::delete('/student/delete/{student_id}', DeleteStudentController::class)->name('student.delete');
     Route::get('/student/search', SearchStudentController::class)->name('student.search');
 
 

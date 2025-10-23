@@ -133,6 +133,13 @@ class StudentController extends Controller implements HasMiddleware
      */
     public function destroy(string $id)
     {
-        //
+         $student = Student::findOrFail($id)->delete();
+        if($student){
+            session()->flash('success','Student deleted Successfully');
+            return redirect(route('students.index'));
+        }else{
+            session()->flash('error','Student Deletion Failed');
+            return redirect(route('students.index'));
+        }
     }
 }

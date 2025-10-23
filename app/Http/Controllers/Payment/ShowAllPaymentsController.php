@@ -15,6 +15,6 @@ class ShowAllPaymentsController extends Controller
     {
         $total = Payment::count();
         $payments = Payment::orderBy('created_at', 'desc')->paginate(10);
-        return view('payments.main',['payments'=>$payments,'total'=>$total]);
+        return view('payments.index',['payments'=>$payments,'total'=>$total]);
     }
 }

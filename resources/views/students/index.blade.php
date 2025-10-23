@@ -1,6 +1,5 @@
-
 <x-app-layout>
-    @section('title',' | Students')
+    @section('title', ' | Students')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Student') }}
@@ -13,8 +12,10 @@
                 <div class="p-5 text-gray-900">
                     <div class="flex justify-end my-2 sm:-flex flex-wrap">
                         <form method="GET" action="{{ route('student.search') }}" class="input-group">
-                            <input type="text" name="search" placeholder="Search..." value="{{ request()->query('search') }}" class="form-control rounded-md shadow-sm">
-                            <button type="submit" class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Search</button>
+                            <input type="text" name="search" placeholder="Search..."
+                                value="{{ request()->query('search') }}" class="form-control rounded-md shadow-sm">
+                            <button type="submit"
+                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Search</button>
                         </form>
                     </div>
                     <div class="flex justify-between bg-gray-200 p-5 rounded-md sm:-flex flex-wrap">
@@ -34,7 +35,7 @@
                             </a>
                         </div> --}}
                     </div>
-                    
+
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="overflow-hidden">
@@ -44,16 +45,18 @@
                                             {{-- <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-left">ID
                                             </th> --}}
-                                            <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">FULL 
-                                                NAME</th>
-                                            <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">TOTAL BALANCE</th>
-                                            <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">ACTION</th>
+                                            <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">FULL NAME
+                                            </th>
+                                            <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">TOTAL
+                                                BALANCE</th>
+                                            <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">ACTION
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-300 dark:divide-gray-700">
                                         @forelse ($students as $student)
-                                        {{$students->appends(['search' => request()->search])->links()}}
+                                            {{ $students->appends(['search' => request()->search])->links() }}
                                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-100">
                                                 {{-- <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -80,13 +83,14 @@
                                                         </button>
 
                                                         <a href="{{ route('student.create-balance', ['student_id' => $student->id]) }}"
-                                                            class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Total Balance</a>
+                                                            class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Total
+                                                            Balance</a>
 
-                                                        <a href="{{ route('payment.create', ['student_id' => urlencode(Crypt::encrypt($student->id))]) }}"
+                                                        <a href="{{ route('payment.create', ['student_id' => urlencode(Crypt::encrypt($student->student))]) }}"
                                                             class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Payment</a>
-                                                        
+
                                                         {{-- Confirmation Modal --}}
-                                                        <div  x-cloak x-show="open"
+                                                        <div x-cloak x-show="open"
                                                             class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
                                                             <div class="bg-white p-6 rounded-lg md-w-3/4">
                                                                 <h3 class="text-lg font-semibold mb-4">Are you sure you
@@ -98,25 +102,24 @@
                                                                         class="bg-gray-300 text-gray-700 px-4 py-2 rounded">Cancel</button>
                                                                     <!-- Delete Button -->
                                                                     <form
-                                                                        action="{{ route('student.delete', ['student_id' => $student->id]) }}/"
+                                                                        action="{{ route('students.destroy', $student->id) }}"
                                                                         method="POST" class="inline">
                                                                         @csrf
                                                                         @method('DELETE')
-                                                                        {{-- <input type="hidden" name="student_id"
-                                                                            :value="studentId"> --}}
                                                                         <button type="submit"
                                                                             class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
                                                                     </form>
                                                                 </div>
                                                             </div> <!-- Modal Body -->
                                                         </div> <!-- Modal -->
+
                                                     </div> <!-- x-data -->
                                                 </td> <!-- Buttons for Action -->
                                             </tr> <!-- Header -->
-                                            @empty
-                                                <div>
-                                                        <h2 class="flex justify-center bg-gray-200">No record found</h2>
-                                                </div>
+                                        @empty
+                                            <div>
+                                                <h2 class="flex justify-center bg-gray-200">No record found</h2>
+                                            </div>
                                         @endforelse <!-- For Else -->
                                     </tbody> <!--Table Class -->
                             </div> <!-- Overflow Hidden -->
