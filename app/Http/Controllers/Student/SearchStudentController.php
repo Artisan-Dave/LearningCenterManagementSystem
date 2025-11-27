@@ -20,8 +20,6 @@ class SearchStudentController extends Controller
         // Use null coalescing to avoid "undefined index" error
         $search = trim($validated['search'] ?? '');
 
-        $total = Student::count();
-
         if ($search !== '') {
             $students = Student::where('full_name', 'LIKE', "%{$search}%")
                 ->orWhere('total_balance', 'LIKE', "%{$search}%")
@@ -30,6 +28,6 @@ class SearchStudentController extends Controller
             $students = Student::paginate(10);
         }
 
-        return view('students.index', compact('students', 'total'));
+        return view('students.index', ['students'=>$students]);
     }
 }

@@ -28,9 +28,8 @@ class StudentController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        $total = Student::count();
         $students = Student::orderBy('created_at', 'desc')->paginate(10);
-        return view('students.index', ['students' => $students, 'total' => $total]);
+        return view('students.index', ['students' => $students]);
     }
 
     /**
@@ -76,24 +75,38 @@ class StudentController extends Controller implements HasMiddleware
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'search' => 'nullable|string|max:255',
+        ]);
+
+        // Use null coalescing to avoid "undefined index" error
+        $search = trim($validated['search'] ?? '');
+
+        if ($search !== '') {
+            $students = Student::where('full_name', 'LIKE', "%{$search}%")
+                ->orWhere('total_balance', 'LIKE', "%{$search}%")
+                ->paginate(10);
+        } else {
+            $students = Student::paginate(10);
+        }
+
+        return view('students.index', ['students'=>$students]); 
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Student $student)
     {
-        $student = Student::findOrFail($id);
-        return view('students.edit',compact('student'));
+        return view('students.edit',['student'=>$student]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Student $student)
     {
         $data = $request->validate([
             'full_name' => ['required','string','regex:/^[a-zA-Z\s]+$/']
@@ -115,7 +128,6 @@ class StudentController extends Controller implements HasMiddleware
             return redirect()->back()->withInput();
         }
 
-        $student = Student::findOrFail($id);
         $student->update($data);
 
         if ($data) {
@@ -131,9 +143,9 @@ class StudentController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-         $student = Student::findOrFail($id)->delete();
+         $student->delete();
         if($student){
             session()->flash('success','Student deleted Successfully');
             return redirect(route('students.index'));

@@ -12,11 +12,8 @@ class CreatePaymentController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request,$student_id)
+    public function __invoke(Request $request, Student $student)
     {
-        $decryptedId = Crypt::decrypt($student_id);
-
-        $students = Student::findOrFail($decryptedId);
-        return view('payments.create-payment',['students'=>$students]);
+        return view('payments.create-payment',['student'=>$student]);
     }
 }

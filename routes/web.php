@@ -49,8 +49,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/payment/main', ShowAllPaymentsController::class)->name('payment.main');
-    Route::get('/payment/create-payment/{student_id}', CreatePaymentController::class)->name('payment.create');
-    Route::post('payment/create-payment/{student_id}', SavePaymentController::class)->name('payment.save');
+    Route::get('/payment/create-payment/{student}', CreatePaymentController::class)->name('payment.create');
+    Route::post('payment/create-payment/{student}', SavePaymentController::class)->name('payment.save');
     Route::get('/payment/search', SearchPaymentController::class)->name('payment.search');
 
     Route::get('/invoice/view/{payment_id}', ViewInvoiceController::class)->name('invoice.view');

@@ -21,7 +21,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-5 text-gray-900">
                     <div class="flex justify-end my-2 sm:-flex flex-wrap">
-                        <form method="GET" action="<?php echo e(route('student.search')); ?>" class="input-group">
+                        <form method="GET" action="<?php echo e(route('students.search')); ?>" class="input-group">
                             <input type="text" name="search" placeholder="Search..."
                                 value="<?php echo e(request()->query('search')); ?>" class="form-control rounded-md shadow-sm">
                             <button type="submit"
@@ -30,7 +30,7 @@
                     </div>
                     <div class="flex justify-between bg-gray-200 p-5 rounded-md sm:-flex flex-wrap">
                         <div>
-                            <h1 class="text-xl text-semibold">Students Enrolled (<?php echo e($total); ?>)</h1>
+                            <h1 class="text-xl text-semibold">Students Enrolled <?php echo e($students->count()); ?></h1>
                         </div>
                         <div>
                             <a href="<?php echo e(route('students.create')); ?>"
@@ -85,11 +85,11 @@
                                                             Delete
                                                         </button>
 
-                                                        <a href="<?php echo e(route('student.create-balance', ['student_id' => $student->id])); ?>"
+                                                        <a href="<?php echo e(route('student.create-balance', $student->id)); ?>"
                                                             class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Total
                                                             Balance</a>
 
-                                                        <a href="<?php echo e(route('payment.create', ['student_id' => urlencode(Crypt::encrypt($student->student))])); ?>"
+                                                        <a href="<?php echo e(route('payment.create', $student->id)); ?>"
                                                             class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Payment</a>
 
                                                         

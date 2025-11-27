@@ -21,15 +21,13 @@
                                 <div>
                                     <x-input-label for="full_name" :value="__('Full Name')" />
                                     <x-text-input id="full_name" class="block mt-1 w-full" type="text"
-                                        name="full_name" :value="$students->full_name"/>
+                                        name="full_name" value="{{ $student->full_name }}"/>
                                     <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
                                 </div>
 
                                 <div class="flex items-center py-4">
                                     <x-input-label for="total_balance" :value="__('Total Balance: ')"/>
-                                    <x-input-label id="total_balance" :value="$students->total_balance"/>
-                                    {{-- <x-text-input id="total_balance" class="block mt-1 w-full" type="number"
-                                        name="total_balance" :value="$students->total_balance"/> --}}
+                                    <x-input-label id="total_balance" name="total-balance" value="{{ $student->total_balance }}"/>
                                     <x-input-error :messages="$errors->get('total_balance')" class="mt-2" />
                                 </div>
 

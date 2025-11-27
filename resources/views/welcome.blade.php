@@ -904,11 +904,19 @@
             }
         </style>
     @endif
+    @include('components.welcomenav')
 </head>
- 
+
 <body class="font-sans antialiased bg-gray-100 h-full w-full">
-    <div class="bg-gray-50 text-black/50 dark:bg-gray-600 dark:text-white/50 w-full h-full bg-no-repeat bg-cover bg-center"
-        style="background-image: url('https://i.pinimg.com/1200x/c2/21/f5/c221f5aec4f3f81cfd5998ba8cf0ab5a.jpg');">
+    
+    <div class="w-full h-full">
+        <div class="">
+
+        </div>
+        
+    </div>
+    @include('components.footer')
+    {{-- <div class="bg-gray-50 text-black/50 dark:bg-gray-600 dark:text-white/50 w-full h-full bg-no-repeat bg-cover bg-center">
         <div
             class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
@@ -927,12 +935,12 @@
                                         Log in
                                     </a>
 
-                                    {{-- @if (Route::has('register'))
+                                    @if (Route::has('register'))
                                         <a href="{{ route('register') }}"
                                             class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white bg-black/50">
                                             Register
                                         </a>
-                                    @endif --}}
+                                    @endif
                                 @endauth
                             </nav>
                         @endif
@@ -941,7 +949,8 @@
             </div>
         </div>
         @include('components.footer')
-    </div>
+    </div> --}}
+
 
 </body>
 
