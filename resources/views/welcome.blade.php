@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8">
@@ -908,14 +908,29 @@
 </head>
 
 <body class="font-sans antialiased bg-gray-100 h-full w-full">
-    
-    <div class="w-full h-full">
-        <div class="">
-
+    <section class="relative min-h-screen flex items-center justify-center px-4 py-10" id="about">
+        <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl mt-6">
+            <div class="col-span-1 md:col-span-8 md:col-start-3 flex flex-col items-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center">About</h1>
+                <p class="text-justify text-sm sm:text-base leading-relaxed">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, natus. Iste quas incidunt voluptatum voluptate delectus cumque laudantium sequi. Aliquid voluptatem omnis consequatur, et illum placeat explicabo rem voluptate, dolorum consectetur sint ipsum eos quibusdam veritatis atque doloremque eligendi. Alias corrupti ullam ab vel, suscipit quo voluptatem sint, eveniet praesentium fugiat fugit esse eligendi odio tempore quasi rem magnam architecto repellat quidem velit. Praesentium natus ullam deserunt pariatur illum reiciendis molestias? Adipisci eaque iure laudantium alias voluptatem et cumque vitae voluptatum ipsa magnam illum hic reiciendis, beatae optio. Repellendus quidem eum fugit cumque possimus ipsum doloremque ipsam deleniti, sed fugiat laudantium, quae libero. Quis delectus reiciendis praesentium soluta atque, quos, necessitatibus iste doloribus, quas omnis commodi quaerat libero laudantium eligendi corporis perferendis ipsum molestias odit eius asperiores dolorem corrupti amet. Animi laboriosam tempora repellat iste labore ullam quo veritatis maiores laudantium, itaque commodi illo incidunt quis quod repudiandae? Sapiente reprehenderit sit quas, quis itaque dolorum quaerat, cumque commodi dolores distinctio eligendi, ducimus assumenda nihil. Aperiam placeat cupiditate tenetur, earum modi adipisci debitis facilis quis maxime non officiis voluptatem, vel ut ullam tempore aut porro at expedita? Praesentium architecto, vel reprehenderit provident eligendi vero quod dolorum perspiciatis quaerat. Odio magnam magni quaerat cupiditate consectetur possimus debitis? Error, eum aliquid commodi rerum nemo, velit minus labore, praesentium dolorem sint officiis veritatis molestiae? Similique temporibus labore modi autem neque nobis laboriosam voluptatum laudantium, quo expedita, repellendus iste vel? Maiores ab sapiente dignissimos nihil, laudantium atque accusamus quidem consequuntur rerum fugiat commodi nam deserunt eligendi. Inventore doloremque, sint, ipsam dolorem saepe itaque dolorum, vel magni eius veniam asperiores? Assumenda facilis animi accusantium mollitia illo reprehenderit nesciunt dolor aliquam adipisci optio quasi, perspiciatis tempore dolores quaerat minus odit a. Vitae similique consequatur excepturi! Repellat repudiandae iusto corrupti reiciendis id fuga quae dolor ab minima sunt!
+                </p>
+            </div>
+            
         </div>
-        
-    </div>
+    </section>
+    <section class="relative min-h-screen flex items-center justify-center px-4 py-10" id="contact">
+        <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl mt-6">
+            <div class="col-span-1 md:col-span-8 md:col-start-3 flex flex-col items-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center">Contact</h1>
+                <p class="text-justify text-sm sm:text-base leading-relaxed">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, natus. Iste quas incidunt voluptatum voluptate delectus cumque laudantium sequi. Aliquid voluptatem omnis consequatur, et illum placeat explicabo rem voluptate, dolorum consectetur sint ipsum eos quibusdam veritatis atque doloremque eligendi. Alias corrupti ullam ab vel, suscipit quo voluptatem sint, eveniet praesentium fugiat fugit esse eligendi odio tempore quasi rem magnam architecto repellat quidem velit. Praesentium natus ullam deserunt pariatur illum reiciendis molestias? Adipisci eaque iure laudantium alias voluptatem et cumque vitae voluptatum ipsa magnam illum hic reiciendis, beatae optio. Repellendus quidem eum fugit cumque possimus ipsum doloremque ipsam deleniti, sed fugiat laudantium, quae libero. Quis delectus reiciendis praesentium soluta atque, quos, necessitatibus iste doloribus, quas omnis commodi quaerat libero laudantium eligendi corporis perferendis ipsum molestias odit eius asperiores dolorem corrupti amet. Animi laboriosam tempora repellat iste labore ullam quo veritatis maiores laudantium, itaque commodi illo incidunt quis quod repudiandae? Sapiente reprehenderit sit quas, quis itaque dolorum quaerat, cumque commodi dolores distinctio eligendi, ducimus assumenda nihil. Aperiam placeat cupiditate tenetur, earum modi adipisci debitis facilis quis maxime non officiis voluptatem, vel ut ullam tempore aut porro at expedita? Praesentium architecto, vel reprehenderit provident eligendi vero quod dolorum perspiciatis quaerat. Odio magnam magni quaerat cupiditate consectetur possimus debitis? Error, eum aliquid commodi rerum nemo, velit minus labore, praesentium dolorem sint officiis veritatis molestiae? Similique temporibus labore modi autem neque nobis laboriosam voluptatum laudantium, quo expedita, repellendus iste vel? Maiores ab sapiente dignissimos nihil, laudantium atque accusamus quidem consequuntur rerum fugiat commodi nam deserunt eligendi. Inventore doloremque, sint, ipsam dolorem saepe itaque dolorum, vel magni eius veniam asperiores? Assumenda facilis animi accusantium mollitia illo reprehenderit nesciunt dolor aliquam adipisci optio quasi, perspiciatis tempore dolores quaerat minus odit a. Vitae similique consequatur excepturi! Repellat repudiandae iusto corrupti reiciendis id fuga quae dolor ab minima sunt!
+                </p>
+            </div>
+            
+        </div>
+    </section>
+    
     @include('components.footer')
+
     {{-- <div class="bg-gray-50 text-black/50 dark:bg-gray-600 dark:text-white/50 w-full h-full bg-no-repeat bg-cover bg-center">
         <div
             class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
@@ -950,8 +965,7 @@
         </div>
         @include('components.footer')
     </div> --}}
-
-
+    @stack('scripts')
 </body>
 
 </html>

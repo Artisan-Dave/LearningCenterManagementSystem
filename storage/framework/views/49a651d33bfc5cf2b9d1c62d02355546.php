@@ -1,4 +1,4 @@
-<header class="shadow mb-2 px-4">
+<header class="shadow mb-2 px-4 sticky top-0 z-50 bg-gray-300">
     <div class="relative mx-auto flex flex-col sm:flex-row max-w-screen-lg sm:items-center sm:justify-between py-4">
         <a href="" class="text-2xl flex items-center font-black" href="#">
             <span class="mr-2 text-blue-600 text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -24,13 +24,13 @@
 
         <input class="peer hidden" type="checkbox" name="navbar-open" id="navbar-open">
 
-        <nav aria-label="Header Navigation" class="peer-checked:block hidden sm:mt-0 sm:block py-4 sm:py-0">
+        <nav aria-label="Header Navigation" class="peer-checked:block hidden sm:mt-0 sm:block py-4 sm:py-0 bg-gray-300">
             <ul class="flex flex-col sm:flex-row sm:gap-x-8 items-center">
                 <li class="hover:text-blue-600 text-gray-700">
-                    <a href="#">About</a>
+                    <a href="#about" class="nav-link">About</a>
                 </li>
                 <li class="hover:text-blue-600 text-gray-700">
-                    <a href="#">Contact</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </li>
                 <?php if(auth()->guard()->check()): ?>
                     <li class=" mt-2 sm:mt-0">
@@ -43,10 +43,13 @@
                             class="border-2 px-6 py-2 rounded-xl border-blue-600 font-medium text-blue-600 hover:bg-blue-600 hover:text-white">Login</a>
                     </li>
                 <?php endif; ?>
+                
             </ul>
         </nav>
     </div>
-
-
 </header>
+
+<?php $__env->startPush('scripts'); ?>
+    <?php echo app('Illuminate\Foundation\Vite')('resources/js/welcomenav.js'); ?>;
+<?php $__env->stopPush(); ?>
 <?php /**PATH D:\xampp\htdocs\lcms\resources\views/components/welcomenav.blade.php ENDPATH**/ ?>
