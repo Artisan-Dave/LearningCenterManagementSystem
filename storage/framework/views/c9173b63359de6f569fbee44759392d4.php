@@ -52,14 +52,14 @@
 <?php endif; ?>
                                     <?php if (isset($component)) { $__componentOriginal18c21970322f9e5c938bc954620c12bb = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal18c21970322f9e5c938bc954620c12bb = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'full_name','class' => 'block mt-1 w-full','type' => 'text','name' => 'full_name','value' => $students->full_name,'disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'full_name','class' => 'block mt-1 w-full','type' => 'text','name' => 'full_name','value' => $student->full_name,'disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['id' => 'full_name','class' => 'block mt-1 w-full','type' => 'text','name' => 'full_name','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($students->full_name),'disabled' => true]); ?>
+<?php $component->withAttributes(['id' => 'full_name','class' => 'block mt-1 w-full','type' => 'text','name' => 'full_name','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($student->full_name),'disabled' => true]); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal18c21970322f9e5c938bc954620c12bb)): ?>
@@ -114,14 +114,14 @@
 <?php endif; ?>
                                     <?php if (isset($component)) { $__componentOriginal18c21970322f9e5c938bc954620c12bb = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal18c21970322f9e5c938bc954620c12bb = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'total_balance','class' => 'block mt-1 w-full','type' => 'number','name' => 'total_balance','value' => $students->total_balance]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'total_balance','class' => 'block mt-1 w-full','type' => 'number','name' => 'total_balance','value' => $student->total_balance]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['id' => 'total_balance','class' => 'block mt-1 w-full','type' => 'number','name' => 'total_balance','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($students->total_balance)]); ?>
+<?php $component->withAttributes(['id' => 'total_balance','class' => 'block mt-1 w-full','type' => 'number','name' => 'total_balance','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($student->total_balance)]); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal18c21970322f9e5c938bc954620c12bb)): ?>

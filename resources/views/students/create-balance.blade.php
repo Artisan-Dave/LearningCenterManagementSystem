@@ -11,7 +11,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            <form method="post" action="">
+                            <form method="post" action="{{ route('payment.save') }}">
                                 @csrf
                                 @if (session()->has('error'))
                                     <div class="font-medium text-sm text-red-600 p-auto">
@@ -21,13 +21,13 @@
                                 <div>
                                     <x-input-label for="full_name" :value="__('Full Name')" />
                                     <x-text-input id="full_name" class="block mt-1 w-full" type="text"
-                                        name="full_name" :value="$students->full_name" disabled/>
+                                        name="full_name" :value="$student->full_name" disabled/>
                                     <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
                                 </div>
                                 <div>
                                     <x-input-label for="total_balance" :value="__('Total Balance')" />
                                     <x-text-input id="total_balance" class="block mt-1 w-full" type="number"
-                                        name="total_balance" :value="$students->total_balance" />
+                                        name="total_balance" :value="$student->total_balance" />
                                     <x-input-error :messages="$errors->get('total_balance')" class="mt-2" />
                                 </div>
 

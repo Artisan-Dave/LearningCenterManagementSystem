@@ -11,23 +11,23 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            <form method="post" action="">
+                            <form method="post" action="{{ route('payment.save',$student->id) }}">
                                 @csrf
                                 @if (session()->has('error'))
                                     <div class="font-medium text-sm text-red-600">
                                         {{ session('error') }}
                                     </div>
                                 @endif
-                                <div>
+                                <div class="mb-3">
                                     <x-input-label for="full_name" :value="__('Full Name')" />
-                                    <x-text-input id="full_name" class="block mt-1 w-full" type="text"
-                                        name="full_name" value="{{ $student->full_name }}"/>
+                                    <x-text-input id="full_name" class="block mt-1 w-full"
+                                        name="full_name" value="{{ $student->full_name }}" type="text" disabled/>
                                     <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
                                 </div>
 
-                                <div class="flex items-center py-4">
-                                    <x-input-label for="total_balance" :value="__('Total Balance: ')"/>
-                                    <x-input-label id="total_balance" name="total-balance" value="{{ $student->total_balance }}"/>
+                                <div class="mb-3">
+                                    <x-input-label for="total_balance" :value="__('Total Balance')"/>
+                                    <x-text-input id="total_balance" class="block mt-1 w-full" name="total-balance" :value="$student->total_balance" type="number" disabled/>
                                     <x-input-error :messages="$errors->get('total_balance')" class="mt-2" />
                                 </div>
 

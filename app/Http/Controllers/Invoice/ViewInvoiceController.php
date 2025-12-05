@@ -14,22 +14,21 @@ class ViewInvoiceController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, $payment_id)
+    public function __invoke(Request $request, Payment $payment)
     {
-        $payment = Payment::where('payment_id', $payment_id)->first();
-
-        $full_name = $payment->full_name;
-        $amount = $payment->amount;
-        $total_balance = $payment->total_balance;
-        $created_at = $payment->created_at;
-
         $invoice = (object) [
-            'id' => $payment_id,
+            'id' => $payment->id,
             'items' => [
-                ['full_name' => $full_name, 'amount' => $amount, 'total_balance' => $total_balance, 'date_of_payment' => $created_at],
+                [
+                    'full_name' => $payment->full_name,
+                    'amount' => $payment->amount,
+                    'total_balance' => $payment->total_balance,
+                    'date_of_payment' => $payment->created_at->format('F j, Y g:i A'),
+                ],
             ],
         ];
-    
+
         return view('invoices.invoice', compact('invoice'));
     }
+
 }

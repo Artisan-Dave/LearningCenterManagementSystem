@@ -11,16 +11,16 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-5 text-gray-900">
                     <div class="flex justify-end my-2 sm:-flex flex-wrap">
-                        <form method="GET" action="{{ route('students.search') }}" class="input-group">
+                        <form method="GET" action="{{ route('student.search') }}" class="input-group">
                             <input type="text" name="search" placeholder="Search..."
                                 value="{{ request()->query('search') }}" class="form-control rounded-md shadow-sm">
                             <button type="submit"
                                 class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Search</button>
                         </form>
                     </div>
-                    <div class="flex justify-between bg-gray-200 p-5 rounded-md sm:-flex flex-wrap">
+                    <div class="flex justify-between bg-gray-200 p-5 rounded-md">
                         <div>
-                            <h1 class="text-xl text-semibold">Students Enrolled {{ $students->count() }}</h1>
+                            <h1 class="text-xl text-semibold">Students Enrolled ({{ $students->count() }})</h1>
                         </div>
                         <div>
                             <a href="{{ route('students.create') }}"
@@ -70,10 +70,12 @@
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                     {{ number_format($student->total_balance) }}
                                                 </td>
-                                                <td class="lg:p-2 sm:flex flex-wrap">
-                                                    <div x-data="{ open: false, studentId: null, studentFullname: '' }">
+                                                <td class="border-">
+                                                    <div x-data="{ open: false, studentId: null, studentFullname: '' }" class="flex items-center gap-3">
                                                         <a href="{{ route('students.edit', $student->id) }}"
-                                                            class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Edit</a>
+                                                            class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
+                                                            Edit
+                                                        </a>
 
                                                         {{-- Trigger delete modal --}}
                                                         <button
@@ -83,13 +85,16 @@
                                                         </button>
 
                                                         <a href="{{ route('student.create-balance', $student->id) }}"
-                                                            class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Total
-                                                            Balance</a>
+                                                            class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
+                                                            Update balance
+                                                        </a>
 
                                                         <a href="{{ route('payment.create', $student->id) }}"
-                                                            class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Payment</a>
+                                                            class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">
+                                                            Create payment
+                                                        </a>
 
-                                                        {{-- Confirmation Modal --}}
+                                                         {{-- Confirmation Modal --}}
                                                         <div x-cloak x-show="open"
                                                             class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
                                                             <div class="bg-white p-6 rounded-lg md-w-3/4">
@@ -110,10 +115,9 @@
                                                                             class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
                                                                     </form>
                                                                 </div>
-                                                            </div> <!-- Modal Body -->
+                                                            </div>
                                                         </div> <!-- Modal -->
-
-                                                    </div> <!-- x-data -->
+                                                    </div> <!-- false-open modal -->
                                                 </td> <!-- Buttons for Action -->
                                             </tr> <!-- Header -->
                                         @empty

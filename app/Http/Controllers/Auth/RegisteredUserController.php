@@ -9,11 +9,24 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
-class RegisteredUserController extends Controller
+class RegisteredUserController extends Controller implements HasMiddleware
 {
+      public static function middleware(): array
+    {
+        return [
+            'auth',
+            // new Middleware('log', only: ['index']),
+            // new Middleware('subscribed', except: ['store']),
+            new Middleware('admin'),
+
+        ];
+    }
+
     /**
      * Display the registration view.
      */

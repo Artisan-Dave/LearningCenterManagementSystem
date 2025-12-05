@@ -928,7 +928,7 @@
             
         </div>
     </section>
-    
+    @stack('scripts')
     @include('components.footer')
 
     {{-- <div class="bg-gray-50 text-black/50 dark:bg-gray-600 dark:text-white/50 w-full h-full bg-no-repeat bg-cover bg-center">
@@ -965,7 +965,7 @@
         </div>
         @include('components.footer')
     </div> --}}
-    @stack('scripts')
+    
 </body>
 
 </html>

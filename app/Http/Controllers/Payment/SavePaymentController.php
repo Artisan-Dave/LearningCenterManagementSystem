@@ -14,11 +14,11 @@ class SavePaymentController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, $student_id)
+    public function __invoke(Request $request, Student $student)
     {
         try {
             // Decrypt the student ID
-            $decryptedId = Crypt::decrypt($student_id);
+            // $decryptedId = Crypt::decrypt($student_id);
 
             // Validate the request
             $request->validate([
@@ -27,17 +27,17 @@ class SavePaymentController extends Controller
             ]);
 
             // Verify the student exists with matching full_name
-            $student = Student::where('student_id', $decryptedId)
+            $paidStudent = Student::where('student_id', $student)
                               ->where('full_name', $request->full_name)
                               ->first();
 
-            if (!$student) {
+            if (!$paidStudent) {
                 session()->flash('error', 'Student not found or name mismatch!');
                 return redirect()->back()->withInput();
             }
 
             // Check if the student has sufficient balance
-            if ($student->total_balance < $request->amount) {
+            if ($paidStudent->total_balance < $request->amount) {
                 session()->flash('error', 'Amount insufficient. Check the total balance!');
                 return redirect()->back()->withInput();
             }
@@ -46,15 +46,15 @@ class SavePaymentController extends Controller
             \DB::beginTransaction();
 
             // Update the student's balance
-            $student->total_balance -= $request->amount;
-            $student->save();
+            $paidStudent->total_balance -= $request->amount;
+            $paidStudent->save();
 
             // Create the payment record
             Payment::create([
-                'student_id' => $decryptedId,
+                'student_id' => $student,
                 'full_name' => $request->full_name,
                 'amount' => $request->amount,
-                'total_balance' => $student->total_balance,
+                'total_balance' => $paidStudent->total_balance,
             ]);
 
             // Commit the transaction (if using transactions)

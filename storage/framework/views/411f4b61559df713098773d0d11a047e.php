@@ -90,17 +90,17 @@
                                                 </td>
                                                 <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                    <?php echo e($payment->created_at); ?>
+                                                    <?php echo e($payment->created_at->format('M d, Y')); ?>
 
                                                 </td>
                                                 <td>
                                                     
-                                                    <a href="<?php echo e(route('invoice.view' ,['payment_id' => $payment->payment_id])); ?>"
+                                                    <a href="<?php echo e(route('invoice.view' ,$payment->id)); ?>"
                                                         class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md"
                                                         target="_blank" rel="noopener noreferrer">View</a>
 
                                                     
-                                                    <a href="<?php echo e(route('invoice.download',['payment_id' => $payment->payment_id])); ?>"
+                                                    <a href="<?php echo e(route('invoice.download',$payment->id)); ?>"
                                                         class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">Download</a>
 
                             </div> <!-- x-data -->

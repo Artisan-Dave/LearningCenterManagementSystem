@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,11 +12,21 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id')->nullable();
-            $table->timestamps();
+
+            // MUST match students.id (BIGINT UNSIGNED)
+            $table->unsignedBigInteger('student_id');
+
+            // Create foreign key IMMEDIATELY after column.
+            $table->foreign('student_id')
+                ->references('id')
+                ->on('students')
+                ->onDelete('cascade');
+
             $table->string('full_name');
             $table->decimal('amount', 10, 2)->default(0);
             $table->decimal('total_balance', 10, 2)->default(0);
+
+            $table->timestamps();
             $table->softDeletes();
         });
     }
