@@ -21,7 +21,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            <form method="post" action="<?php echo e(route('payment.save',$student->id)); ?>">
+                            <form method="post" action="<?php echo e(route('payments.store',$student->id)); ?>">
                                 <?php echo csrf_field(); ?>
                                 <?php if(session()->has('error')): ?>
                                     <div class="font-medium text-sm text-red-600">
@@ -115,14 +115,14 @@
 <?php endif; ?>
                                     <?php if (isset($component)) { $__componentOriginal18c21970322f9e5c938bc954620c12bb = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal18c21970322f9e5c938bc954620c12bb = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'total_balance','class' => 'block mt-1 w-full','name' => 'total-balance','value' => $student->total_balance,'type' => 'number','disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'total_balance','class' => 'block mt-1 w-full','name' => 'total-balance','value' => ''.e($student->total_balance).'','type' => 'number','disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['id' => 'total_balance','class' => 'block mt-1 w-full','name' => 'total-balance','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($student->total_balance),'type' => 'number','disabled' => true]); ?>
+<?php $component->withAttributes(['id' => 'total_balance','class' => 'block mt-1 w-full','name' => 'total-balance','value' => ''.e($student->total_balance).'','type' => 'number','disabled' => true]); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal18c21970322f9e5c938bc954620c12bb)): ?>

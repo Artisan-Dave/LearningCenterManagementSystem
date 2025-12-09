@@ -26,11 +26,19 @@ class StudentController extends Controller implements HasMiddleware
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::orderBy('created_at', 'desc')->paginate(10);
-        return view('students.index', ['students' => $students]);
+        $search = $request->search;
+
+        $students = Student::when($search, function ($query, $search) {
+            $query->where('full_name', 'like', "%{$search}%");
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('students.index', compact('students', 'search'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +53,7 @@ class StudentController extends Controller implements HasMiddleware
      */
     public function store(Request $request)
     {
-         $data = $request->validate([
+        $data = $request->validate([
             'full_name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/']
         ]);
 
@@ -69,7 +77,7 @@ class StudentController extends Controller implements HasMiddleware
         $newStudent = new Student($data);
         $newStudent->save();
 
-        return redirect(route('students.index'))->with('success','Student enrolled successfully');
+        return redirect(route('students.index'))->with('success', 'Student enrolled successfully');
     }
 
     /**
@@ -77,22 +85,7 @@ class StudentController extends Controller implements HasMiddleware
      */
     public function show(Request $request)
     {
-        $validated = $request->validate([
-            'search' => 'nullable|string|max:255',
-        ]);
 
-        // Use null coalescing to avoid "undefined index" error
-        $search = trim($validated['search'] ?? '');
-
-        if ($search !== '') {
-            $students = Student::where('full_name', 'LIKE', "%{$search}%")
-                ->orWhere('total_balance', 'LIKE', "%{$search}%")
-                ->paginate(10);
-        } else {
-            $students = Student::paginate(10);
-        }
-
-        return view('students.index', ['students'=>$students]); 
     }
 
     /**
@@ -100,7 +93,7 @@ class StudentController extends Controller implements HasMiddleware
      */
     public function edit(Student $student)
     {
-        return view('students.edit',['student'=>$student]);
+        return view('students.edit', ['student' => $student]);
     }
 
     /**
@@ -109,21 +102,21 @@ class StudentController extends Controller implements HasMiddleware
     public function update(Request $request, Student $student)
     {
         $data = $request->validate([
-            'full_name' => ['required','string','regex:/^[a-zA-Z\s]+$/']
-        ]); 
+            'full_name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/']
+        ]);
 
-        $existingStudent = Student::where('full_name',$data['full_name'])
+        $existingStudent = Student::where('full_name', $data['full_name'])
             ->first();
 
         $deletedStudent = Student::onlyTrashed()
-            ->where('full_name',$data['full_name'])
+            ->where('full_name', $data['full_name'])
             ->first();
 
 
         if ($existingStudent) {
             session()->flash('error', 'Student already enrolled');
             return redirect()->back()->withInput();
-        }elseif($deletedStudent){
+        } elseif ($deletedStudent) {
             session()->flash('error', 'Something went wrong');
             return redirect()->back()->withInput();
         }
@@ -145,12 +138,12 @@ class StudentController extends Controller implements HasMiddleware
      */
     public function destroy(Student $student)
     {
-         $student->delete();
-        if($student){
-            session()->flash('success','Student deleted Successfully');
+        $student->delete();
+        if ($student) {
+            session()->flash('success', 'Student deleted Successfully');
             return redirect(route('students.index'));
-        }else{
-            session()->flash('error','Student Deletion Failed');
+        } else {
+            session()->flash('error', 'Student Deletion Failed');
             return redirect(route('students.index'));
         }
     }

@@ -8,11 +8,8 @@ use App\Http\Controllers\Payment\CreatePaymentController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Payment\SavePaymentController;
 use App\Http\Controllers\Payment\SearchPaymentController;
-use App\Http\Controllers\Payment\ShowAllPaymentsController;
 use App\Http\Controllers\Student\BalanceController;
-use App\Http\Controllers\Student\CreateBalanceController;
 use App\Http\Controllers\Student\SearchStudentController;
-use App\Http\Controllers\Student\UpdateBalanceController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\ProfileController;
@@ -46,13 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::post('student/create-balance/{student}', [BalanceController::class, 'update'])->name('student.update-balance');
 
     //Student Routes
-    Route::resource('students', StudentController::class);
+    Route::resource('students', StudentController::class)->except('show');
     Route::get('/student/search', SearchStudentController::class)->name('student.search');
 
-
-    Route::get('/payment/main', ShowAllPaymentsController::class)->name('payment.main');
-    Route::get('/payment/create-payment/{student}', CreatePaymentController::class)->name('payment.create');
-    Route::post('payment/create-payment/{student}', [PaymentController::class, 'store'])->name('payment.save');
+    Route::resource('payments', PaymentController::class)->except(['show', 'edit', 'destroy','create']);
+    Route::get('/payments/create/{student}', [PaymentController::class, 'create'])->name('payments.create');
     Route::get('/payment/search', SearchPaymentController::class)->name('payment.search');
 
     Route::get('/invoice/view/{payment}', ViewInvoiceController::class)->name('invoice.view');

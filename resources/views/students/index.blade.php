@@ -10,13 +10,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-5 text-gray-900">
-                    <div class="flex justify-end my-2 sm:-flex flex-wrap">
-                        <form method="GET" action="{{ route('student.search') }}" class="input-group">
-                            <input type="text" name="search" placeholder="Search..."
-                                value="{{ request()->query('search') }}" class="form-control rounded-md shadow-sm">
-                            <button type="submit"
-                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Search</button>
-                        </form>
+                    <div class="flex justify-end border-2 border-blue-600">
+                        <x-search-bar :value="$search" placeholder="Search students..." width="w-1/3" />
                     </div>
                     <div class="flex justify-between bg-gray-200 p-5 rounded-md">
                         <div>
@@ -28,12 +23,6 @@
                                 Add Student
                             </a>
                         </div>
-                        {{-- <div>
-                            <a href="{{ route('attendance.index') }}"
-                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
-                                Attendance
-                            </a>
-                        </div> --}}
                     </div>
 
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -56,7 +45,7 @@
                                     <tbody
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-300 dark:divide-gray-700">
                                         @forelse ($students as $student)
-                                            {{ $students->appends(['search' => request()->search])->links() }}
+                                            {{ $students->appends(request()->all())->links() }}
                                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-100">
                                                 {{-- <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -89,7 +78,7 @@
                                                             Update balance
                                                         </a>
 
-                                                        <a href="{{ route('payment.create', $student->id) }}"
+                                                        <a href="{{ route('payments.create', $student->id) }}"
                                                             class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">
                                                             Create payment
                                                         </a>

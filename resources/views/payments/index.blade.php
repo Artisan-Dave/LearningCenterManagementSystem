@@ -29,7 +29,7 @@
                     </div>
                     <div class="flex justify-between bg-gray-200 p-5 rounded-md">
                         <div>
-                            <h1 class="text-xl text-semibold">Total of Transactions ({{ $total }})</h1>
+                            <h1 class="text-xl text-semibold">Total of Transactions ({{ $payments->count() }})</h1>
                         </div>
                     </div>
 

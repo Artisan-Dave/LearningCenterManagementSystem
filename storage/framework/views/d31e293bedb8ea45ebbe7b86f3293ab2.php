@@ -20,13 +20,27 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-5 text-gray-900">
-                    <div class="flex justify-end my-2 sm:-flex flex-wrap">
-                        <form method="GET" action="<?php echo e(route('student.search')); ?>" class="input-group">
-                            <input type="text" name="search" placeholder="Search..."
-                                value="<?php echo e(request()->query('search')); ?>" class="form-control rounded-md shadow-sm">
-                            <button type="submit"
-                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Search</button>
-                        </form>
+                    <div class="flex justify-end border-2 border-blue-600">
+                        <?php if (isset($component)) { $__componentOriginal4c1005aa12a1806956b715b534f8b19a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4c1005aa12a1806956b715b534f8b19a = $attributes; } ?>
+<?php $component = App\View\Components\SearchBar::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('search-bar'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\SearchBar::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($search),'placeholder' => 'Search students...','width' => 'w-1/3']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4c1005aa12a1806956b715b534f8b19a)): ?>
+<?php $attributes = $__attributesOriginal4c1005aa12a1806956b715b534f8b19a; ?>
+<?php unset($__attributesOriginal4c1005aa12a1806956b715b534f8b19a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4c1005aa12a1806956b715b534f8b19a)): ?>
+<?php $component = $__componentOriginal4c1005aa12a1806956b715b534f8b19a; ?>
+<?php unset($__componentOriginal4c1005aa12a1806956b715b534f8b19a); ?>
+<?php endif; ?>
                     </div>
                     <div class="flex justify-between bg-gray-200 p-5 rounded-md">
                         <div>
@@ -38,7 +52,6 @@
                                 Add Student
                             </a>
                         </div>
-                        
                     </div>
 
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -59,7 +72,7 @@
                                     <tbody
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-300 dark:divide-gray-700">
                                         <?php $__empty_1 = true; $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                            <?php echo e($students->appends(['search' => request()->search])->links()); ?>
+                                            <?php echo e($students->appends(request()->all())->links()); ?>
 
                                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-100">
                                                 
@@ -92,7 +105,7 @@
                                                             Update balance
                                                         </a>
 
-                                                        <a href="<?php echo e(route('payment.create', $student->id)); ?>"
+                                                        <a href="<?php echo e(route('payments.create', $student->id)); ?>"
                                                             class="px-2 py-2 bg-green-500 rounded-md text-white text-sm shadow-md">
                                                             Create payment
                                                         </a>
