@@ -10,16 +10,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-5 text-gray-900">
-                    <div class="flex justify-end border-2 border-blue-600">
-                        <x-search-bar :value="$search" placeholder="Search students..." width="w-1/3" />
+                    <div class="flex items-center justify-center md:flex md:pe-4 md:justify-end mb-2">
+                        <x-search-bar :value="$search" placeholder="Search students..."/>
                     </div>
-                    <div class="flex justify-between bg-gray-200 p-5 rounded-md">
+                    <div class="flex justify-center gap-4 md:flex md:justify-between bg-gray-200 p-5 rounded-md">
                         <div>
                             <h1 class="text-xl text-semibold">Students Enrolled ({{ $students->count() }})</h1>
                         </div>
                         <div>
                             <a href="{{ route('students.create') }}"
-                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">
+                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md flex">
                                 Add Student
                             </a>
                         </div>
@@ -52,8 +52,8 @@
                                                     {{ $student->student_id }}
                                                 </td> --}}
                                                 <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                    {{ $student->full_name }}
+                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 hover:text-green-600">
+                                                    <a href="{{ route('students.show',$student->id) }}"> {{ $student->full_name }} </a>
                                                 </td>
                                                 <td
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">

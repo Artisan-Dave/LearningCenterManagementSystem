@@ -14,20 +14,14 @@
                     </div>
                 @endif
                 <div class="p-5 text-gray-900">
-                    <div class="flex justify-end my-2">
-                        <form method="GET" action="{{ route('payment.search') }}" class="input-group">
-                            <input type="text" name="search" placeholder="Search..."
-                                value="{{ request()->query('search') }}" class="form-control rounded-md shadow-sm">
-                            <button type="submit"
-                                class="px-2 py-2 bg-blue-500 rounded-md text-white text-sm shadow-md">Search</button>
-                        </form>
+                    <div class="flex justify-center md:flex md:justify-end items-center mb-3s">
                         @if (isset($message))
                             <div style="font-medium text-sm text-red-600">
                                 {{ $message }}
                             </div>
                         @endif
                     </div>
-                    <div class="flex justify-between bg-gray-200 p-5 rounded-md">
+                    <div class="flex justify-center items-center md:flex md:justify-start bg-gray-200 p-5 rounded-md">
                         <div>
                             <h1 class="text-xl text-semibold">Total of Transactions ({{ $payments->count() }})</h1>
                         </div>

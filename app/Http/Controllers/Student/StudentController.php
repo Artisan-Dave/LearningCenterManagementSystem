@@ -83,9 +83,9 @@ class StudentController extends Controller implements HasMiddleware
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(Student $student)
     {
-
+        return view('students.show',['student'=>$student]);
     }
 
     /**

@@ -904,7 +904,7 @@
             }
         </style>
     <?php endif; ?>
-    <?php echo $__env->make('components.welcomenav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('layouts.welcomenav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </head>
 
 <body class="font-sans antialiased bg-gray-100 h-full w-full">

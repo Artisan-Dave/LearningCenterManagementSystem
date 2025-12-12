@@ -904,7 +904,7 @@
             }
         </style>
     @endif
-    @include('components.welcomenav')
+    @include('layouts.welcomenav')
 </head>
 
 <body class="font-sans antialiased bg-gray-100 h-full w-full">

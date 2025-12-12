@@ -2,9 +2,7 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Invoice\DownloadInvoiceController;
 use App\Http\Controllers\Invoice\ViewInvoiceController;
-use App\Http\Controllers\Invoices\ShowInvoiceController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\Payment\CreatePaymentController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Payment\SavePaymentController;
 use App\Http\Controllers\Payment\SearchPaymentController;
@@ -35,7 +33,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
-
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
     Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
 
@@ -43,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::post('student/create-balance/{student}', [BalanceController::class, 'update'])->name('student.update-balance');
 
     //Student Routes
-    Route::resource('students', StudentController::class)->except('show');
+    Route::resource('students', StudentController::class);
     Route::get('/student/search', SearchStudentController::class)->name('student.search');
 
     Route::resource('payments', PaymentController::class)->except(['show', 'edit', 'destroy','create']);
