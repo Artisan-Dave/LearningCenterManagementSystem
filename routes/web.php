@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('students', StudentController::class);
     Route::get('/student/search', SearchStudentController::class)->name('student.search');
 
-    Route::resource('payments', PaymentController::class)->except(['show', 'edit', 'destroy','create']);
+    Route::resource('payments', PaymentController::class)->except(['show', 'edit', 'destroy']);
     Route::get('/payments/create/{student}', [PaymentController::class, 'create'])->name('payments.create');
     Route::get('/payment/search', SearchPaymentController::class)->name('payment.search');
 

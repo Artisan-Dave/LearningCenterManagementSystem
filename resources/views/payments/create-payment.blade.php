@@ -13,6 +13,7 @@
                         <div class="p-6 text-gray-900">
                             <form method="post" action="{{ route('payments.store',$student->id) }}">
                                 @csrf
+                                <input type="hidden" name="student_id" value="{{ $student->id }}">
                                 @if (session()->has('error'))
                                     <div class="font-medium text-sm text-red-600">
                                         {{ session('error') }}

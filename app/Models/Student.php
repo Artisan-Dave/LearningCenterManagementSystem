@@ -9,13 +9,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Student extends Model
 {
     use SoftDeletes;
-    
+
+    protected $casts = [
+        'total_balance' => 'float',
+    ];
+
+    protected $attributes = [
+        'total_balance' => 0,
+    ];
+
     protected $fillable = [
         'full_name',
         'total_balance'
     ];
 
-    public function payments(){
+    public function payments()
+    {
         return $this->hasMany(Payment::class);
     }
 

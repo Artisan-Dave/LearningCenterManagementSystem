@@ -14,7 +14,7 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class PaymentController extends Controller implements HasMiddleware
 {
-     public static function middleware(): array
+    public static function middleware(): array
     {
         return [
             'auth',
@@ -38,44 +38,49 @@ class PaymentController extends Controller implements HasMiddleware
         return view('payments.create-payment', compact('student'));
     }
 
-    public function store(Request $request, Student $student)
+    public function store(Request $request)
     {
-        try {
-            // Validate request
-            $request->validate([
-                'amount' => 'required|numeric|min:1',
-            ]);
 
-            // Check if student has enough balance
-            if ($student->total_balance < $request->amount) {
-                return back()->with('error', 'Amount exceeds student balance!')->withInput();
-            }
+        // Validate request
+        $validated = $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'amount' => 'required|numeric|min:1',
+        ]);
+
+        $student = Student::findOrFail($validated['student_id']);
+
+        // Check if student has enough balance
+        if ($validated['amount'] > $student->total_balance) {
+            return back()->with('error', 'Amount exceeds student balance!')->withInput();
+        }
+
+        try {
 
             DB::beginTransaction();
 
+            // // Force test exception
+            // throw new Exception("Test exception");
+
             // Deduct balance
-            $student->total_balance -= $request->amount;
+            $student->total_balance -= $validated['amount'];
             $student->save();
 
             // Create payment (relationship-based)
             $student->payments()->create([
                 'full_name' => $student->full_name,   // snapshot of current name
-                'amount' => $request->amount,
+                'amount' => $validated['amount'],
                 'total_balance' => $student->total_balance,
             ]);
 
             DB::commit();
 
-            return redirect()->route('payment.main')
+            return redirect()->route('payments.index')
                 ->with('success', 'Payment recorded successfully!');
 
         } catch (Exception $e) {
-
             DB::rollBack();
-            Log::error("Payment error: " . $e->getMessage());
 
-            return back()->with('error', 'Something went wrong, please try again.')
-                ->withInput();
+            dd($e->getMessage(), $e->getTraceAsString());
         }
     }
 

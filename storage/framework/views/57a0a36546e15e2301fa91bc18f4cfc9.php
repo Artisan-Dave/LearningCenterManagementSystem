@@ -23,6 +23,7 @@
                         <div class="p-6 text-gray-900">
                             <form method="post" action="<?php echo e(route('payments.store',$student->id)); ?>">
                                 <?php echo csrf_field(); ?>
+                                <input type="hidden" name="student_id" value="<?php echo e($student->id); ?>">
                                 <?php if(session()->has('error')): ?>
                                     <div class="font-medium text-sm text-red-600">
                                         <?php echo e(session('error')); ?>
